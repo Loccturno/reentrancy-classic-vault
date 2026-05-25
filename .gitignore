@@ -1,0 +1,22 @@
+# Foundry build artifacts
+cache/
+out/
+
+# Foundry dependencies (managed by `forge install`)
+lib/
+
+# Broadcast logs from forge script
+broadcast/
+!broadcast/
+broadcast/*/31337/
+broadcast/**/dry-run/
+
+# Environment files (never commit secrets!)
+.env
+.env.local
+
+# Editor / OS artifacts
+.vscode/
+.idea/
+.DS_Store
+*.swp

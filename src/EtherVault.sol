@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 contract EtherVault {
     mapping(address => uint256) public balances;
@@ -26,23 +26,25 @@ contract EtherVault {
         require(balances[msg.sender] >= _amount, "Insufficient balance");
         require(_amount > 0, "Amount must be > 0");
 
-        (bool success, ) = msg.sender.call{value: _amount}("");
-        require(success, "Transfer failed");
-
-        balances[msg.sender] -= _amount;
-        totalDeposits -= _amount;
-
-        emit Withdraw(msg.sender, _amount);
+       (bool success, ) = msg.sender.call{value: _amount}("");
+require(success, "Transfer failed");
+unchecked {
+    balances[msg.sender] -= _amount;
+    totalDeposits -= _amount;
+}
+emit Withdraw(msg.sender, _amount); 
     }
 
     function withdrawAll() external {
         uint256 bal = balances[msg.sender];
         require(bal > 0, "No balance");
         balances[msg.sender] = 0;
-        (bool success, ) = msg.sender.call{value: bal}("");
-        require(success, "Transfer failed");
-        totalDeposits -= bal;
-        emit Withdraw(msg.sender, bal);
+(bool success, ) = msg.sender.call{value: bal}("");
+require(success, "Transfer failed");
+unchecked {
+    totalDeposits -= bal;
+}
+emit Withdraw(msg.sender, bal);
     }
 
     function getBalance(address _user) external view returns (uint256) {

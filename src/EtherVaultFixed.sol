@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 /**
  * @title EtherVaultFixed
@@ -12,7 +12,7 @@ pragma solidity ^0.7.0;
  *      a safety net in case CEI is missed elsewhere (defense in depth).
  *
  * In production code, prefer importing from OpenZeppelin:
- *   import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+ *   import "openzeppelin/contracts/security/ReentrancyGuard.sol";
  *
  * The guard is inlined here for educational clarity — anyone reading 
  * this repo can see exactly how the mutex works without chasing imports.
